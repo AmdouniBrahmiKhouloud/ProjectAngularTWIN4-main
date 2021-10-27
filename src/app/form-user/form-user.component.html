@@ -1,0 +1,56 @@
+<h1>Create Account</h1>
+<form class="w-50 mx-auto" #f='ngForm'>
+<div class="form-group">
+  <label>First Name</label>
+  <input type="text" name="firstName" class="form-control" [(ngModel)]="user.firstName" required minlength="3"
+   #fn="ngModel" pattern="[a-z A-Z]+$">
+</div>
+<br>
+<div class="alert alert-danger" *ngIf="fn.invalid && fn.touched">
+<div *ngIf="fn.hasError('required')">first name is a required filed</div>
+<div *ngIf="fn.hasError('minlength')">minlength is equal to 3 </div>
+<div *ngIf="fn.hasError('pattern')">pattern error </div>
+</div>
+<br>
+<div class="form-group">
+  <label>Last Name</label>
+  <input type="text" name="lastName" class="form-control" [(ngModel)]="user.lastName" required
+    #fl="ngModel">
+</div>
+<br>
+<div class="alert alert-danger" *ngIf="fl.invalid && fl.touched">
+  msg => problem
+</div>
+<br>
+  <div class="form-group">
+    <label>birthDate</label>
+    <input type="date" name="birthDate" class="form-control" [(ngModel)]="user.birthDate" required
+           #fl="ngModel">
+  </div>
+  <br>
+  <div class="form-group">
+    <label>profession</label>
+    <input type="text" name="profession" class="form-control" [(ngModel)]="user.profession" required
+           #fl="ngModel">
+  </div>
+  <br>
+  <div class="form-group">
+    <label>picture</label>
+    <input type="text" name="picture" class="form-control" [(ngModel)]="user.picture" required  #fl="ngModel">
+  </div>
+  <br>
+  <div class="form-group">
+    <label>email</label>
+    <input type="email" name="email" class="form-control" [(ngModel)]="user.email" required  #fl="ngModel">
+  </div>
+  <br>
+  <div class="form-group">
+    <label>password</label>
+    <input type="password" name="password" class="form-control" [(ngModel)]="user.password" #fl="ngModel">
+  </div>
+  <br>
+
+<button class="btn btn-outline-success" [disabled]="f.invalid" (click)="save()">Save</button>
+<!--<button class="btn btn-outline-warning" (click)="f.reset()">Reset</button>-->
+<button class="btn btn-outline-warning" type="reset">Reset</button>
+</form>

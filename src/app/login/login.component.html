@@ -1,0 +1,30 @@
+<h1>Login</h1>
+<form class="w-50 mx-auto" [formGroup]="myForm" (ngSubmit)="myForm" >
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" class="form-control" formControlName="email">
+    <div class="alert alert-danger" *ngIf="myForm.controls['email'].invalid && myForm.controls['email'].touched">
+      <div *ngIf="myForm.controls['email'].hasError('required')">msg error required</div>
+      <div *ngIf="myForm.controls['email'].hasError('minlength')">msg error minlength</div>
+    </div>
+  </div>
+  <br>
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password"  class="form-control" formControlName="psw">
+  </div>
+  <br>
+  <div class="form-group">
+    <label>Confirm Password</label>
+    <input type="password"  class="form-control" formControlName="confirmPsw">
+  </div>
+  <br>
+  <div class="alert alert-danger" *ngIf="myForm.controls['psw'].value!=myForm.controls['confirmPsw'].value && myForm.controls['confirmPsw'].touched">
+    please give a valid password
+  </div>
+  <button type="submit" class="btn btn-outline-success"  [disabled]="myForm.invalid ||myForm.controls['psw'].value!=myForm.controls['confirmPsw'].value"  >Login</button>
+  <!--<button class="btn btn-outline-warning" (click)="f.reset()">Reset</button>-->
+  <button class="btn btn-outline-warning" type="reset">Reset</button>
+</form>
+{{myForm.status|json}}
+{{myForm.value|json}}
